@@ -1,19 +1,9 @@
-# MEAN Ecommerce
+# MEAN ECommerce
 
-## Technologies and Tools
 
-- TextEditor - Visual Studio Code
-- VSCode Extensions
-  - Prettier - for code formatting
-- Development OS - Window 10
-- Frontend - Angular
-- Backend - NodeJS(ExpressJS)
+## Notes
 
-## Usage
-
-```cmd
-git clone https://github.com/skr571999/MEANEcommerce.git
-
+```sh
 cd client
 npm install
 npm start
@@ -23,4 +13,3 @@ npm install
 npm start
 ```
 
-<!-- ## Preview Screens -->
