@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormBuilder, Validators } from "@angular/forms";
 import { ProductService } from "../product.service";
 import { Router } from "@angular/router";
 
@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 })
 export class AddProductComponent implements OnInit {
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private productService: ProductService,
     private router: Router
   ) {}
