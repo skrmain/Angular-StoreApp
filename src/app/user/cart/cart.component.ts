@@ -9,9 +9,9 @@ import { CartService } from "../../cart.service";
 export class CartComponent implements OnInit {
   constructor(private cartService: CartService) {}
 
-  cartProducts = [];
+  cartProducts:any[] = [];
   baseImageUrl = "http://localhost:3000/images/";
-  message;
+  message:any;
 
   ngOnInit() {
     this.getCartProducts();
@@ -23,14 +23,14 @@ export class CartComponent implements OnInit {
     });
   }
 
-  increQuant(productId) {
+  increQuant(productId:any) {
     this.cartService.addToCart(productId).subscribe((result: any) => {
       this.message = result.message;
       this.getCartProducts();
     });
   }
 
-  decreQuant(productId) {
+  decreQuant(productId:any) {
     this.cartService.removeFromCart(productId).subscribe((result: any) => {
       this.message = result.message;
       this.getCartProducts();
@@ -44,7 +44,7 @@ export class CartComponent implements OnInit {
     });
   }
 
-  onNewMessage(newMessage) {
+  onNewMessage(newMessage:any) {
     this.message = newMessage
   }
 }

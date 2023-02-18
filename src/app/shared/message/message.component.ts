@@ -6,7 +6,7 @@ import { Component,EventEmitter, OnInit, Input, Output } from "@angular/core";
   styleUrls: ["./message.component.css"]
 })
 export class MessageComponent implements OnInit {
-  @Input() message;
+  @Input() message:any;
   @Output() newMessage = new EventEmitter();
   constructor() {}
 

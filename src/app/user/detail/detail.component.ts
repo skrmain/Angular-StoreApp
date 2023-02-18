@@ -18,15 +18,15 @@ export class DetailComponent implements OnInit {
     private cartService: CartService
   ) {}
 
-  message;
+  message:any;
 
   Product: any = {};
   baseImageUrl = "http://localhost:3000/images/";
 
   ngOnInit() {
-    this.activeRoute.params.subscribe(result => {
+    this.activeRoute.params.subscribe((result:any) => {
       this.productService.getProduct(result.productId).subscribe(
-        result2 => {
+        (result2:any) => {
           this.Product = result2["product"];
         },
         err => {
@@ -39,7 +39,7 @@ export class DetailComponent implements OnInit {
     });
   }
 
-  addToCart(productId) {
+  addToCart(productId:any) {
     this.cartService.addToCart(productId).subscribe((result: any) => {
       this.message = result.message;
     });

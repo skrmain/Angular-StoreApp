@@ -6,7 +6,7 @@ import { CanActivate, Router } from "@angular/router";
 })
 export class SuperAdminGuard implements CanActivate {
   constructor(private router: Router) {}
-  canActivate(next, state) {
+  canActivate(next:any, state:any) {
     if (localStorage.getItem("isSuperAdmin") === "true") {
       return true;
     }

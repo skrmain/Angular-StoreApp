@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 
 import { catchError } from "rxjs/operators";
 import { throwError } from "rxjs";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root"
@@ -10,21 +11,21 @@ import { throwError } from "rxjs";
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  baseUrl = "http://localhost:3000/user/";
+  baseUrl = `${environment.serverUrl}/user/`;
 
-  registerUser(user) {
+  registerUser(user:any) {
     return this.http
       .post(this.baseUrl + "register", user)
       .pipe(catchError(this.handleError));
   }
 
-  loginUser(user) {
+  loginUser(user:any) {
     return this.http
       .post(this.baseUrl + "login", user)
       .pipe(catchError(this.handleError));
   }
 
-  saveToken(token) {
+  saveToken(token:any) {
     localStorage.setItem("token", token);
   }
 

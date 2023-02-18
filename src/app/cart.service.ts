@@ -13,11 +13,11 @@ export class CartService {
     return this.http.get(this.baseUrl);
   }
 
-  addToCart(productId) {
+  addToCart(productId:any) {
     return this.http.post(this.baseUrl + "add", { productId });
   }
 
-  removeFromCart(productId) {
+  removeFromCart(productId:any) {
     return this.http.post(this.baseUrl + "remove", { productId });
   }
 

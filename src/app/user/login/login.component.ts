@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   });
 
   ngOnInit() {}
-  error;
+  error:any;
 
   loginUser() {
     this.authService.loginUser(this.loginForm.value).subscribe(

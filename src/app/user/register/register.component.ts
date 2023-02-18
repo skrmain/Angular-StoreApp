@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
     password: ["", [Validators.required, Validators.minLength(4)]]
   });
   ngOnInit() {}
-  error;
+  error:any;
 
   signupUser() {
     this.authService.registerUser(this.signupForm.value).subscribe(

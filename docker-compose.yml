@@ -12,4 +12,4 @@ services:
         ports:
             - 8000:8000
         environment:
-            - MONGODB_URL=mongodb://admin:admin@mongo:27017/
+            - MONGODB_URI=mongodb://admin:admin@mongo:27017/

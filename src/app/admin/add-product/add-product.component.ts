@@ -30,14 +30,14 @@ export class AddProductComponent implements OnInit {
   ngOnInit() {}
 
   // run when file field changes
-  onFileSelect(event) {
+  onFileSelect(event:any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      this.addProductForm.get("image").setValue(file);
+      this.addProductForm.get("image")?.setValue(file);
     }
   }
 
-  error;
+  error:any;
 
   addProduct() {
     let product = this.addProductForm.value;

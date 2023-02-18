@@ -11,7 +11,7 @@ export class ProductService {
 
   baseUrl = "http://localhost:3000/products/";
 
-  addProduct(product) {
+  addProduct(product:any) {
     return this.http
       .post(this.baseUrl + "add", product)
       .pipe(catchError(this.handleError));

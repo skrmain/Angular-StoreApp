@@ -15,7 +15,7 @@ export class ProductService {
     return this.http.get(this.baseUrl).pipe(catchError(this.handleError));
   }
 
-  getProduct(productId) {
+  getProduct(productId:any) {
     return this.http.get(this.baseUrl + 'detail/' + productId);
   }
 
@@ -24,7 +24,7 @@ export class ProductService {
   }
 
   baseUrl2 = "http://localhost:3000/cart/";
-  addToCart(productId) {
+  addToCart(productId:any) {
     return this.http.post(this.baseUrl2, { productId: productId });
   }
 }
