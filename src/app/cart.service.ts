@@ -1,27 +1,32 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root',
 })
 export class CartService {
   constructor(private http: HttpClient) {}
 
-  baseUrl = "http://localhost:3000/cart/";
+  baseUrl = `${environment.serverUrl}/cart/`;
 
   getCartProducts() {
     return this.http.get(this.baseUrl);
   }
 
-  addToCart(productId:any) {
-    return this.http.post(this.baseUrl + "add", { productId });
+  createCart() {
+    return this.http.post(this.baseUrl, {});
   }
 
-  removeFromCart(productId:any) {
-    return this.http.post(this.baseUrl + "remove", { productId });
+  addToCart(productId: any) {
+    return this.http.put(this.baseUrl, { productId });
+  }
+
+  removeFromCart(productId: any) {
+    return this.http.delete(`${this.baseUrl}products/${productId}`);
   }
 
   emptyCart() {
-    return this.http.delete(this.baseUrl + "empty");
+    return this.http.delete(this.baseUrl);
   }
 }

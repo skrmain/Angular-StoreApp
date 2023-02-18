@@ -1,12 +1,11 @@
-import { Component, OnInit } from "@angular/core";
-import { UntypedFormBuilder, Validators } from "@angular/forms";
-import { AuthService } from "../../auth.service";
-import { Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: "user-signup",
-  templateUrl: "./register.component.html",
-  styleUrls: ["./register.component.css"]
+  selector: 'user-signup',
+  templateUrl: './register.component.html',
 })
 export class RegisterComponent implements OnInit {
   constructor(
@@ -16,19 +15,19 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   signupForm = this.fb.group({
-    name: ["", [Validators.required, Validators.minLength(3)]],
-    email: ["", [Validators.required, Validators.email]],
-    password: ["", [Validators.required, Validators.minLength(4)]]
+    name: ['', [Validators.required, Validators.minLength(3)]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(4)]],
   });
   ngOnInit() {}
-  error:any;
+  error: any;
 
   signupUser() {
     this.authService.registerUser(this.signupForm.value).subscribe(
-      result => {
-        this.router.navigate(["/login"]);
+      (result) => {
+        this.router.navigate(['/login']);
       },
-      err => {
+      (err) => {
         this.error = err.error;
       }
     );

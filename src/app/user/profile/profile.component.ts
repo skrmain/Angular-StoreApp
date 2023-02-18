@@ -1,11 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { AuthService } from "../../auth.service";
-import { Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: "user-profile",
-  templateUrl: "./profile.component.html",
-  styleUrls: ["./profile.component.css"]
+  selector: 'user-profile',
+  templateUrl: './profile.component.html',
 })
 export class ProfileComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
@@ -15,11 +14,13 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.authService.getUserDetail().subscribe(
       (result: any) => {
-        this.userProfile = result;
+        console.log('R ', result);
+
+        this.userProfile = result.data.user;
       },
-      err => {
+      (err) => {
         this.authService.removeToken();
-        this.router.navigate(["/login"]);
+        this.router.navigate(['/login']);
       }
     );
   }

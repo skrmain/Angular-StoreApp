@@ -22,23 +22,27 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let product of cartProducts; let j = index;">
+            <tr *ngFor="let product of cartProducts; let j = index">
               <th>{{ j + 1 }}</th>
               <td>
-                <img [src]="baseImageUrl + product.productId.image" alt="" />
+                <img
+                  [ngStyle]="{ maxWidth: '5em' }"
+                  [src]="baseImageUrl + product.productId.image"
+                  alt=""
+                />
               </td>
               <td>{{ product.productId.name }}</td>
               <td>
                 <button
                   class="btn btn-primary"
-                  (click)="increQuant(product.productId._id)"
+                  (click)="incrementQuantity(product.productId._id)"
                 >
                   +
                 </button>
                 <span class="p-2">{{ product.quantity }}</span>
                 <button
                   class="btn btn-primary"
-                  (click)="decreQuant(product.productId._id)"
+                  (click)="decreaseQuantity(product.productId._id)"
                 >
                   -
                 </button>
@@ -55,7 +59,7 @@
     </ng-template>
     <ng-template #noProduct>
       <p>Not Product in Cart</p>
-      <a routerLink="/all">Go To Product Section</a>
+      <a routerLink="/">Go To Product Section</a>
     </ng-template>
   </div>
 </div>
