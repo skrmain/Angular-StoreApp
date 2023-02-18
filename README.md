@@ -1,15 +1,9 @@
-# MEAN ECommerce
-
+# Angular-StoreApp
 
 ## Notes
 
-```sh
-cd client
-npm install
-npm start
-
-cd server
-npm install
+```bash
+docker compose up -d mongo
+docker compose up -d server
 npm start
 ```
-
