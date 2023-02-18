@@ -1,37 +1,43 @@
-import { Component, OnInit } from "@angular/core";
-import { environment } from "src/environments/environment";
-import { CartService } from "../../cart.service";
+import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { CartService } from '../../cart.service';
 
 @Component({
-  selector: "user-cart",
-  templateUrl: "./cart.component.html",
-  styleUrls: ["./cart.component.css"]
+  selector: 'user-cart',
+  templateUrl: './cart.component.html',
 })
 export class CartComponent implements OnInit {
   constructor(private cartService: CartService) {}
 
-  cartProducts:any[] = [];
+  cartProducts: any[] = [];
   baseImageUrl = `${environment.serverUrl}/images/`;
-  message:any;
+  message: any;
 
   ngOnInit() {
     this.getCartProducts();
   }
 
   getCartProducts() {
-    this.cartService.getCartProducts().subscribe((result: any) => {
-      this.cartProducts = result.cart;
-    });
+    this.cartService.getCartProducts().subscribe(
+      (result: any) => {
+        this.cartProducts = result.data.products;
+      },
+      (error: any) => {
+        this.cartService.createCart().subscribe((result) => {
+          console.log('Cart Created');
+        });
+      }
+    );
   }
 
-  increQuant(productId:any) {
+  incrementQuantity(productId: any) {
     this.cartService.addToCart(productId).subscribe((result: any) => {
       this.message = result.message;
       this.getCartProducts();
     });
   }
 
-  decreQuant(productId:any) {
+  decreaseQuantity(productId: any) {
     this.cartService.removeFromCart(productId).subscribe((result: any) => {
       this.message = result.message;
       this.getCartProducts();
@@ -45,7 +51,7 @@ export class CartComponent implements OnInit {
     });
   }
 
-  onNewMessage(newMessage:any) {
-    this.message = newMessage
+  onNewMessage(newMessage: any) {
+    this.message = newMessage;
   }
 }

@@ -1,19 +1,18 @@
-import { Component,EventEmitter, OnInit, Input, Output } from "@angular/core";
+import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
 
 @Component({
-  selector: "shared-message",
-  templateUrl: "./message.component.html",
-  styleUrls: ["./message.component.css"]
+  selector: 'shared-message',
+  templateUrl: './message.component.html',
 })
 export class MessageComponent implements OnInit {
-  @Input() message:any;
+  @Input() message: any;
   @Output() newMessage = new EventEmitter();
   constructor() {}
 
   ngOnInit() {}
 
   clearMessage() {
-    this.message = "";
+    this.message = '';
     this.newMessage.emit(this.message);
   }
 }
