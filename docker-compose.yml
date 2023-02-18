@@ -1,15 +1,15 @@
 services:
-    mongo:
-        image: mongo
-        volumes:
-            - ./docker-data/mongodb_data:/data/db/
-        environment:
-            MONGO_INITDB_ROOT_USERNAME: admin
-            MONGO_INITDB_ROOT_PASSWORD: admin
+  mongo:
+    image: mongo
+    volumes:
+      - ./docker-data/mongodb_data:/data/db/
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
 
-    server:
-        image: skrmain/expressjs-store-api:0.1
-        ports:
-            - 8000:8000
-        environment:
-            - MONGODB_URI=mongodb://admin:admin@mongo:27017/
+  server:
+    image: skrmain/expressjs-store-api:0.1
+    ports:
+      - 8000:8000
+    environment:
+      - MONGODB_URI=mongodb://admin:admin@mongo:27017/
