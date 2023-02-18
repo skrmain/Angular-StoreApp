@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root"
@@ -9,7 +10,7 @@ import { catchError } from "rxjs/operators";
 export class ProductService {
   constructor(private http: HttpClient) {}
 
-  baseUrl = "http://localhost:3000/products/";
+  baseUrl = `${environment.serverUrl}/products/`;
 
   addProduct(product:any) {
     return this.http

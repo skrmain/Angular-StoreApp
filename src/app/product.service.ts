@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { catchError } from "rxjs/operators";
 import { throwError } from "rxjs";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root"
@@ -9,7 +10,7 @@ import { throwError } from "rxjs";
 export class ProductService {
   constructor(private http: HttpClient) {}
 
-  baseUrl = "http://localhost:3000/products/";
+  baseUrl = `${environment.serverUrl}/products/`;
 
   getProducts() {
     return this.http.get(this.baseUrl).pipe(catchError(this.handleError));
@@ -23,7 +24,7 @@ export class ProductService {
     return throwError(error.error);
   }
 
-  baseUrl2 = "http://localhost:3000/cart/";
+  baseUrl2 = `${environment.serverUrl}/cart/`;
   addToCart(productId:any) {
     return this.http.post(this.baseUrl2, { productId: productId });
   }

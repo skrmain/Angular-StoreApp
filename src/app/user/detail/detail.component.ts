@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ProductService } from "../../product.service";
 import { AuthService } from "../../auth.service";
 import { CartService } from "src/app/cart.service";
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: "user-detail",
@@ -21,7 +22,7 @@ export class DetailComponent implements OnInit {
   message:any;
 
   Product: any = {};
-  baseImageUrl = "http://localhost:3000/images/";
+  baseImageUrl = `${environment.serverUrl}/images/`;
 
   ngOnInit() {
     this.activeRoute.params.subscribe((result:any) => {

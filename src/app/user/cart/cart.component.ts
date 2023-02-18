@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { environment } from "src/environments/environment";
 import { CartService } from "../../cart.service";
 
 @Component({
@@ -10,7 +11,7 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService) {}
 
   cartProducts:any[] = [];
-  baseImageUrl = "http://localhost:3000/images/";
+  baseImageUrl = `${environment.serverUrl}/images/`;
   message:any;
 
   ngOnInit() {
