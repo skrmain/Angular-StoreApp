@@ -29,7 +29,8 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/']);
       },
       error: (err) => {
-        this.error = err.error;
+        this.loginForm.get('password')?.reset();
+        // this.error = err.error;
       },
     });
   }
