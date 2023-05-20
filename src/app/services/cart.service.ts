@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { environment } from 'src/environments/environment';
+// import { environment } from 'src/environments/environment';
 import { HttpService } from './http.service';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { HttpService } from './http.service';
 export class CartService {
   constructor(private _http: HttpService) {}
 
-  baseUrl = `${environment.serverUrl}/cart/`;
+  baseUrl = `carts/my`;
 
   getCartProducts() {
     return this._http.get(this.baseUrl);

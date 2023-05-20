@@ -1,32 +1,41 @@
 import { Injectable } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
+
 import { HttpService } from './http.service';
+import { Response } from './types';
+
+export interface Image {
+  name: string;
+  size: number;
+  mimetype: 'image/png';
+  buffer: string;
+  _id: string;
+}
+
+export interface Product {
+  _id: string;
+  name: string;
+  price: number;
+  brand: string;
+  category: string;
+  description: string;
+  images: Image[];
+  createdAt: string;
+  updatedAt: string;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
+  path = `products/`;
   constructor(private http: HttpService) {}
 
-  baseUrl = `${environment.serverUrl}/products/`;
-
-  getProducts() {
-    return this.http.get(this.baseUrl).pipe(catchError(this.handleError));
+  getProducts(): Observable<Response<Product[]>> {
+    return this.http.get(this.path);
   }
 
-  getProduct(productId: any) {
-    return this.http.get(this.baseUrl + '/' + productId);
-  }
-
-  handleError(error: HttpErrorResponse) {
-    return throwError(error.error);
-  }
-
-  baseUrl2 = `${environment.serverUrl}/cart/`;
-  addToCart(productId: any) {
-    return this.http.post(this.baseUrl2, { productId: productId });
+  getProduct(productId: string): Observable<Response<Product>> {
+    return this.http.get(`${this.path}/${productId}`);
   }
 }

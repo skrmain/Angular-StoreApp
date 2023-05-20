@@ -1,27 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+// import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { User, UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'user-profile',
   templateUrl: './profile.component.html',
 })
 export class ProfileComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private _userService: UserService, private router: Router) {}
 
-  userProfile: any;
+  user?: User;
 
   ngOnInit() {
-    this.authService.getUserDetail().subscribe(
-      (result: any) => {
+    this._userService.getUserDetail().subscribe({
+      next: (result) => {
         console.log('R ', result);
 
-        this.userProfile = result.data.user;
+        this.user = result.data.user;
       },
-      (err) => {
-        this.authService.removeToken();
-        this.router.navigate(['/login']);
-      }
-    );
+      // error: (err) => {
+      //   this._userService.removeToken();
+      //   this.router.navigate(['/login']);
+      // }
+    });
   }
 }

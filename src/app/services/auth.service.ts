@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 
-import { environment } from 'src/environments/environment';
 import { HttpService } from './http.service';
+import { Response } from './types';
+
+export interface AuthTokens {
+  refresh: string;
+  token: string;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -12,18 +15,12 @@ import { HttpService } from './http.service';
 export class AuthService {
   constructor(private http: HttpService) {}
 
-  baseUrl = `${environment.serverUrl}/`;
-
-  registerUser(user: any) {
-    return this.http
-      .post(this.baseUrl + 'register', user)
-      .pipe(catchError(this.handleError));
+  registerUser(user: any): Observable<Response<{}>> {
+    return this.http.post('register', user);
   }
 
-  loginUser(user: any) {
-    return this.http
-      .post(this.baseUrl + 'login', user)
-      .pipe(catchError(this.handleError));
+  loginUser(user: any): Observable<Response<AuthTokens>> {
+    return this.http.post('login', user);
   }
 
   saveToken(token: any) {
@@ -40,15 +37,5 @@ export class AuthService {
 
   checkToken() {
     return !!localStorage.getItem('token');
-  }
-
-  getUserDetail() {
-    return this.http
-      .get(`${this.baseUrl}me`)
-      .pipe(catchError(this.handleError));
-  }
-
-  private handleError(error: HttpErrorResponse) {
-    return throwError(error.error);
   }
 }
