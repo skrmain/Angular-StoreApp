@@ -18,7 +18,7 @@ export class DetailComponent implements OnInit {
 
   message: any;
 
-  Product: any = {};
+  product: any = {};
   baseImageUrl = `${environment.serverUrl}/images/`;
 
   ngOnInit() {
@@ -27,7 +27,7 @@ export class DetailComponent implements OnInit {
         (result2: any) => {
           console.log('result2 ', result2);
 
-          this.Product = result2.data;
+          this.product = result2.data;
         },
         (err) => {
           console.log('Error', err);

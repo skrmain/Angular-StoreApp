@@ -3,24 +3,30 @@
     Back
   </a>
   <p *ngIf="message">{{ message }}</p>
-  <div class="productContainer row" *ngIf="Product.name">
-    <div class="col-6" *ngIf="Product.image">
+  <div class="productContainer row" *ngIf="product.name">
+    <div class="col-6" *ngIf="product.image">
       <img
         [style]="{ width: '100%' }"
-        [src]="baseImageUrl + Product.image"
+        [src]="baseImageUrl + product.image"
         alt=""
       />
     </div>
     <div class="col-6">
+      <div *ngFor="let image of product.images">
+        <img
+          src="data:{{ image.mimetype }};base64,{{ image.buffer }}"
+          [alt]="image.name"
+        />
+      </div>
       <div class="detailContainer">
-        <h2>{{ Product.name }}</h2>
-        <p>Price : {{ Product.price }}</p>
-        <p>Company : {{ Product.brand }}</p>
-        <p>Category : {{ Product.category }}</p>
-        <p>Description : {{ Product.description }}</p>
+        <h2>{{ product.name }}</h2>
+        <p>Price : {{ product.price }}</p>
+        <p>Company : {{ product.brand }}</p>
+        <p>Category : {{ product.category }}</p>
+        <p>Description : {{ product.description }}</p>
       </div>
       <div>
-        <button class="btn btn-primary" (click)="addToCart(Product._id)">
+        <button class="btn btn-primary" (click)="addToCart(product._id)">
           Add To Cart
         </button>
       </div>
