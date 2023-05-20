@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
 import { environment } from 'src/environments/environment';
-import { CartService } from '../../cart.service';
 
 @Component({
   selector: 'user-cart',
