@@ -1,0 +1,26 @@
+<ul class="list">
+  <li *ngFor="let product of products" class="m-3">
+    <a
+      class="p-4 d-block"
+      [routerLink]="['/detail', product._id]"
+      class="d-flex p-2"
+    >
+      <div *ngIf="product.images && product.images.length > 0">
+        <img
+          style="width: 5rem"
+          src="data:{{ product.images[0].mimetype }};base64,{{
+            product.images[0].buffer
+          }}"
+          [alt]="product.images[0].name"
+        />
+      </div>
+      <div>
+        <h3>
+          {{ product.name }}
+        </h3>
+        <br />
+        {{ product.description }}
+      </div>
+    </a>
+  </li>
+</ul>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CartService } from 'src/app/services/cart.service';
+import { Product, ProductService } from 'src/app/services/product.service';
 
-import { ProductService } from '../../product.service';
-import { CartService } from 'src/app/cart.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -18,24 +18,22 @@ export class DetailComponent implements OnInit {
 
   message: any;
 
-  Product: any = {};
+  product?: Product;
   baseImageUrl = `${environment.serverUrl}/images/`;
 
   ngOnInit() {
     this.activeRoute.params.subscribe((result: any) => {
-      this.productService.getProduct(result.productId).subscribe(
-        (result2: any) => {
-          console.log('result2 ', result2);
-
-          this.Product = result2.data;
+      this.productService.getProduct(result.productId).subscribe({
+        next: (result2) => {
+          this.product = result2.data;
         },
-        (err) => {
-          console.log('Error', err);
-          // alert("Error Occurred Login Again");
-          // this.authService.removeToken();
-          // this.router.navigate(["/login"]);
-        }
-      );
+        // error: (err) => {
+        //   console.log('Error', err);
+        //   // alert("Error Occurred Login Again");
+        //   // this.authService.removeToken();
+        //   // this.router.navigate(["/login"]);
+        // }
+      });
     });
   }
 

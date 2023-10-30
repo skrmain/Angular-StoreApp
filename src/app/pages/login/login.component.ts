@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, Validators } from '@angular/forms';
-import { AuthService } from '../../auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -22,19 +22,16 @@ export class LoginComponent implements OnInit {
   error: any;
 
   loginUser() {
-    this.authService.loginUser(this.loginForm.value).subscribe(
-      (result: any) => {
+    this.authService.loginUser(this.loginForm.value).subscribe({
+      next: (result) => {
         alert('Login Success');
-        console.log(result);
-        // if (result.user.isSuperAdmin) {
-        //   localStorage.setItem('isSuperAdmin', 'true');
-        // }
         this.authService.saveToken(result.data.token);
         this.router.navigate(['/']);
       },
-      (err) => {
-        this.error = err.error;
-      }
-    );
+      error: (err) => {
+        this.loginForm.get('password')?.reset();
+        // this.error = err.error;
+      },
+    });
   }
 }

@@ -1,0 +1,28 @@
+<div>
+  <a class="btn btn-outline-secondary" routerLinkActive="active" routerLink="/">
+    Back
+  </a>
+  <p *ngIf="message">{{ message }}</p>
+  <div class="productContainer row" *ngIf="product">
+    <div class="col-6" *ngFor="let image of product.images">
+      <img
+        src="data:{{ image.mimetype }};base64,{{ image.buffer }}"
+        [alt]="image.name"
+      />
+    </div>
+    <div class="col-6">
+      <div class="detailContainer">
+        <h2>{{ product.name }}</h2>
+        <p>Price : {{ product.price }}</p>
+        <p>Company : {{ product.brand }}</p>
+        <p>Category : {{ product.category }}</p>
+        <p>Description : {{ product.description }}</p>
+      </div>
+      <div>
+        <button class="btn btn-primary" (click)="addToCart(product._id)">
+          Add To Cart
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
